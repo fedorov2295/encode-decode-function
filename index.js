@@ -1,20 +1,22 @@
-const encode = function(str) {
+const encode = function (str) {
     let n = 1;
     let result = str ? str[0] : '';
-    for (let i = 0; i < str.length  ; i++) {
-        if (str[i] == str[i + 1] && i != str.length-1) {
-            n++;
-        }
-        else if (n != 1 && i != str.length-1) {
-            result += (n);
-            result += str[i + 1];
-            n = 1;
-        } else if (n == 1 && i != str.length-1){
-            result += str[i + 1];
-            n = 1;
-        }
-        else if (i == str.length-1 && n != 1){
-            result += (n);
+    for (let i = 0; i < str.length; i++) {
+        if (i != str.length - 1) {
+            if (str[i] == str[i + 1]) {
+                n++;
+            }
+            else if (n != 1) {
+                result += n;
+                result += str[i + 1];
+                n = 1;
+            } else if (n == 1) {
+                result += str[i + 1];
+                n = 1;
+            }
+
+        } else if(n != 1) {
+            result += n;
         }
     }
     return result;
